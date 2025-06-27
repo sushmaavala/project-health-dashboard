@@ -1,0 +1,27 @@
+app:
+  id: ari:cloud:ecosystem::app/597ae982-b816-4323-ace4-cccb06e70b61
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+
+modules:
+  jira:projectPage:
+    - key: project-health-dashboard
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: Project Health Dashboard
+
+  function:
+    - key: resolver
+      handler: index.handler
+
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+
+permissions:
+  scopes:
+    - read:jira-work
